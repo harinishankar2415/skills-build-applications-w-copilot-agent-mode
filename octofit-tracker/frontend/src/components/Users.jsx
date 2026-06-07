@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 
 const CODESPACE_NAME = import.meta.env.VITE_CODESPACE_NAME
 const API_BASE_URL = CODESPACE_NAME
-  ? `https://${CODESPACE_NAME}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api'
+  ? `https://${CODESPACE_NAME}-8000.app.github.dev`
+  : 'http://localhost:8000'
 
 const normalizeResponse = (payload) =>
   Array.isArray(payload)
@@ -18,7 +18,7 @@ function Users() {
   useEffect(() => {
     async function loadUsers() {
       try {
-        const response = await fetch(`${API_BASE_URL}/users/`)
+        const response = await fetch(`${API_BASE_URL}/api/users/`)
         const payload = await response.json()
         setUsers(normalizeResponse(payload))
       } catch (err) {
@@ -34,7 +34,7 @@ function Users() {
   return (
     <section>
       <h2>Users</h2>
-      <p>Backend endpoint: <code>{API_BASE_URL}/users/</code></p>
+      <p>Backend endpoint: <code>{API_BASE_URL}/api/users/</code></p>
       {loading && <p>Loading users…</p>}
       {error && <p className="error">{error}</p>}
       {!loading && !users.length && <p>No users found.</p>}
