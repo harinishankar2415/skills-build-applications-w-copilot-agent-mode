@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 
 const CODESPACE_NAME = import.meta.env.VITE_CODESPACE_NAME
 const API_BASE_URL = CODESPACE_NAME
-  ? `https://${CODESPACE_NAME}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api'
+  ? `https://${CODESPACE_NAME}-8000.app.github.dev`
+  : 'http://localhost:8000'
 
 const normalizeResponse = (payload) =>
   Array.isArray(payload)
@@ -18,7 +18,7 @@ function Workouts() {
   useEffect(() => {
     async function loadWorkouts() {
       try {
-        const response = await fetch(`${API_BASE_URL}/workouts/`)
+        const response = await fetch(`${API_BASE_URL}/api/workouts/`)
         const payload = await response.json()
         setWorkouts(normalizeResponse(payload))
       } catch (err) {
@@ -54,3 +54,4 @@ function Workouts() {
 }
 
 export default Workouts
+X
