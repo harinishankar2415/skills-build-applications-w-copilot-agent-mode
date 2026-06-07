@@ -1,4 +1,4 @@
-cat > octofit-tracker/frontend/package.json << 'EOF'
+
 {
   "name": "frontend",
   "private": true,
@@ -28,5 +28,5 @@ cat > octofit-tracker/frontend/package.json << 'EOF'
     "vite": "^8.0.12"
   }
 }
-EOF
+
 
