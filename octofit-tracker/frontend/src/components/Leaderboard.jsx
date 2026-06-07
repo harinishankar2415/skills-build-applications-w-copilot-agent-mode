@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 
 const CODESPACE_NAME = import.meta.env.VITE_CODESPACE_NAME
 const API_BASE_URL = CODESPACE_NAME
-  ? `https://${CODESPACE_NAME}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api'
+  ? `https://${CODESPACE_NAME}-8000.app.github.dev`
+  : 'http://localhost:8000'
 
 const normalizeResponse = (payload) =>
   Array.isArray(payload)
@@ -18,7 +18,7 @@ function Leaderboard() {
   useEffect(() => {
     async function loadLeaderboard() {
       try {
-        const response = await fetch(`${API_BASE_URL}/leaderboard/`)
+        const response = await fetch(`${API_BASE_URL}/api/leaderboard/`)
         const payload = await response.json()
         setEntries(normalizeResponse(payload))
       } catch (err) {
@@ -34,7 +34,7 @@ function Leaderboard() {
   return (
     <section>
       <h2>Leaderboard</h2>
-      <p>Backend endpoint: <code>{API_BASE_URL}/leaderboard/</code></p>
+      <p>Backend endpoint: <code>{API_BASE_URL}/api/leaderboard/</code></p>
       {loading && <p>Loading leaderboard…</p>}
       {error && <p className="error">{error}</p>}
       {!loading && !entries.length && <p>No leaderboard entries found.</p>}
