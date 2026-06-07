@@ -34,7 +34,7 @@ function Workouts() {
   return (
     <section>
       <h2>Workouts</h2>
-      <p>Backend endpoint: <code>{API_BASE_URL}/workouts/</code></p>
+      <p>Backend endpoint: <code>{API_BASE_URL}/api/workouts/</code></p>
       {loading && <p>Loading workouts…</p>}
       {error && <p className="error">{error}</p>}
       {!loading && !workouts.length && <p>No workouts found.</p>}
