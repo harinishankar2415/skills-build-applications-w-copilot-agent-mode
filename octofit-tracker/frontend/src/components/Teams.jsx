@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 
 const CODESPACE_NAME = import.meta.env.VITE_CODESPACE_NAME
 const API_BASE_URL = CODESPACE_NAME
-  ? `https://${CODESPACE_NAME}-8000.app.github.dev/api`
-  : 'http://localhost:8000/api'
+  ? `https://${CODESPACE_NAME}-8000.app.github.dev`
+  : 'http://localhost:8000'
 
 const normalizeResponse = (payload) =>
   Array.isArray(payload)
@@ -18,7 +18,7 @@ function Teams() {
   useEffect(() => {
     async function loadTeams() {
       try {
-        const response = await fetch(`${API_BASE_URL}/teams/`)
+        const response = await fetch(`${API_BASE_URL}/api/teams/`)
         const payload = await response.json()
         setTeams(normalizeResponse(payload))
       } catch (err) {
@@ -34,7 +34,7 @@ function Teams() {
   return (
     <section>
       <h2>Teams</h2>
-      <p>Backend endpoint: <code>{API_BASE_URL}/teams/</code></p>
+      <p>Backend endpoint: <code>{API_BASE_URL}/api/teams/</code></p>
       {loading && <p>Loading teams…</p>}
       {error && <p className="error">{error}</p>}
       {!loading && !teams.length && <p>No teams found.</p>}
